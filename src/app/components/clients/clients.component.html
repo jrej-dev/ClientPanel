@@ -1,0 +1,44 @@
+<div class="clients">
+    <div class="row mb-4">
+        <div class="col-6 align-self-center">
+            <h1>    
+                <i class="fa fa-user-circle"></i>
+                Clients
+            </h1>
+        </div>
+        <div class="col-6 align-self-center">
+            <a routerLink="/client/add" class="btn btn-success btn-block">
+              <i class="fa fa-plus"></i>
+              New
+            </a>
+        </div>
+    </div>
+    <table *ngIf="clients?.length > 0; else noClients" class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Balance</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let client of clients">
+            <td>{{ client.firstName }} {{client.lastName}}</td>
+            <td>{{ client.email }}</td>
+            <td>{{ client.balance | currency:"GBP":symbol }}</td>
+            <td>
+              <a routerLink="client/{{ client.id }}" class="btn btn-secondary btn-sm">
+                <i class="fa fa-arrow-circle-o-right"></i>
+                details
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ng-template # noClients>
+        <hr>
+        <h5>There are no clients in the system.</h5>
+      </ng-template>
+</div>
